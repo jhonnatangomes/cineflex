@@ -30,4 +30,9 @@
     align-items: center;
     color: white;
     margin-right: 8px;
+    cursor: pointer;
+}
+
+.link {
+    text-decoration: none;
 }

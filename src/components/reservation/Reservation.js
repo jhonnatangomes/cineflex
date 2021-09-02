@@ -4,7 +4,7 @@ import Bottom from "../bottom/Bottom";
 const seats = [];
 
 for (let i = 1; i <= 50; i++) {
-    seats.push({ number: String(i).padStart(2, "0") });
+    seats.push({ name: String(i).padStart(2, "0"), id: i, isAvailable: i % 2 === 0 ? true : false});
 }
 
 export default function Reservation() {
@@ -14,7 +14,7 @@ export default function Reservation() {
                 <div className="page-title">Selecione o(s) assento(s)</div>
                 <div className="seats">
                     {seats.map((seat, i) => (
-                        <Seat key={i} number={seat.number} />
+                        <Seat key={i} number={seat.name} isAvailable={seat.isAvailable}/>
                     ))}
                 </div>
                 <div className="seats-subtitle">
@@ -48,6 +48,6 @@ export default function Reservation() {
     );
 }
 
-function Seat({ number }) {
-    return <div className="seat">{number}</div>;
+function Seat({ number, isAvailable }) {
+    return <div className={isAvailable ? "seat selected-color" : "seat unavailable-color"}>{number}</div>;
 }
