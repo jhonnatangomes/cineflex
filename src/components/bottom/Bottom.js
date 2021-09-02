@@ -1,13 +1,14 @@
-import enolaholmes from "../../assets/img2.png";
+import "./bottom.css";
 
-export default function Bottom() {
+export default function Bottom({img, title, session}) {
     return (
         <div className="bottom">
             <div className="movie-bottom">
-                <img src={enolaholmes} alt="" />
+                <img src={img} alt="" />
             </div>
             <div className="movie-information">
-                <span>Enola Holmes</span>
+                <span>{title}</span>
+                <span>{session}</span>
             </div>
         </div>
     );

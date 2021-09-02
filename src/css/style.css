@@ -16,3 +16,17 @@ body {
     height: 110px;
     letter-spacing: 0.04em;
 }
+
+button {
+    margin-left: calc((100% - 225px) / 2);
+    width: 225px;
+    height: 42px;
+    border: none;
+    background-color: #E8833A;
+    border-radius: 3px;
+    color: white;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
