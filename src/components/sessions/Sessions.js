@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 
 export default function Sessions() {
     const [sessions, setSessions] = useState([]);
+    const [movieInfo, setMovieInfo] = useState({});
     const { idFilme } = useParams();
 
     useEffect(() => {
@@ -15,7 +16,8 @@ export default function Sessions() {
                 `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idFilme}/showtimes`
             )
             .then((res) => {
-                setSessions(res.data.days)
+                setSessions(res.data.days);
+                setMovieInfo(res.data);
             });
     }, []);
 
@@ -32,7 +34,7 @@ export default function Sessions() {
                     />
                 ))}
             </div>
-            <Bottom title={"Enola Holmes"} session={"bla bla la"} />
+            <Bottom title={movieInfo.title} img={movieInfo.posterURL} />
         </div>
     );
 }

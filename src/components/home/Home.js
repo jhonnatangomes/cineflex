@@ -1,6 +1,4 @@
 import "./home.css";
-import twentysixtyseven from "../../assets/img.png";
-import enolaholmes from "../../assets/img2.png";
 import Movie from "./Movie";
 import axios from "axios";
 import {useState, useEffect} from "react";
