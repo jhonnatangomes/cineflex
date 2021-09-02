@@ -10,11 +10,16 @@ export default function Home() {
 
     const [movies, setMovies] = useState([]);
 
-    axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies").then(
-        res => {
-            setMovies(res.data);
-        }
-    )
+    useEffect(
+        () => {
+            axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies").then(
+                res => {
+                    setMovies(res.data);
+                }
+            )
+        }, []
+    );
+    
 
     return (
         <div className="home">
