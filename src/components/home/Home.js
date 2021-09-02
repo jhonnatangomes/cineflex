@@ -25,9 +25,8 @@ export default function Home() {
         <div className="home">
             <div className="page-title">Selecione o filme</div>
             <div className="movies">
-                {movies.map(movie => <Movie img={movie.posterURL} key={movie.id}/>)}
+                {movies.map(movie => <Movie img={movie.posterURL} key={movie.id} id={movie.id}/>)}
             </div>
         </div>
-        
     );
 }

@@ -1,28 +1,34 @@
 import MovieDay from "./MovieDay";
 import Bottom from "../bottom/Bottom";
 import "./sessions.css";
-
-const showTimes = [
-    {
-        day: "Quinta-feira - 24/06/2021",
-        sessions: ["15:00", "19:00"],
-    },
-    {
-        day: "Sexta-feira - 25/06/2021",
-        sessions: ["15:00", "19:00"],
-    },
-];
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 
 export default function Sessions() {
+    const [sessions, setSessions] = useState([]);
+    const { idFilme } = useParams();
+
+    useEffect(() => {
+        axios
+            .get(
+                `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idFilme}/showtimes`
+            )
+            .then((res) => {
+                setSessions(res.data.days)
+            });
+    }, []);
+
     return (
         <div className="sessions-page">
             <div className="sessions">
                 <div className="page-title">Selecione o horário</div>
-                {showTimes.map((showTime, i) => (
+                {sessions.map((session) => (
                     <MovieDay
-                        day={showTime.day}
-                        sessions={showTime.sessions}
-                        key={i}
+                        weekday={session.weekday}
+                        date={session.date}
+                        showtimes={session.showtimes}
+                        key={session.id}
                     />
                 ))}
             </div>

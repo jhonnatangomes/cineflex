@@ -1,9 +1,9 @@
-export default function MovieDay({day, sessions}) {
+export default function MovieDay({weekday, date, showtimes}) {
     return (
         <div className="movie-day">
-            <div className="day">{day}</div>
+            <div className="day">{weekday} - {date}</div>
             <div className="times">
-                {sessions.map((session, i) => <Time time={session} key={i} />)}
+                {showtimes.map(showtime => <Time time={showtime.name} key={showtime.id} />)}
             </div>
         </div>
     );
