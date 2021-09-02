@@ -2,96 +2,25 @@ import "./home.css";
 import twentysixtyseven from "../../assets/img.png";
 import enolaholmes from "../../assets/img2.png";
 import Movie from "./Movie";
+import axios from "axios";
+import {useState, useEffect} from "react";
 
-const movies = [
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    },
-    {
-        movie: "2067",
-        img: twentysixtyseven
-    },
-    {
-        movie: "Enola Holmes",
-        img: enolaholmes
-    }
-]
 
 export default function Home() {
+
+    const [movies, setMovies] = useState([]);
+
+    axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies").then(
+        res => {
+            setMovies(res.data);
+        }
+    )
+
     return (
         <div className="home">
             <div className="page-title">Selecione o filme</div>
             <div className="movies">
-                {movies.map((movie, i) => <Movie img={movie.img} key={i}/>)}
+                {movies.map(movie => <Movie img={movie.posterURL} key={movie.id}/>)}
             </div>
         </div>
         

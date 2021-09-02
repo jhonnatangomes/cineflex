@@ -10,10 +10,10 @@ function App() {
     return (
         <>
             <TopBar />
-            {/* <Home /> */}
+            <Home />
             {/* <Sessions/> */}
             {/* <Reservation /> */}
-            <Success />
+            {/* <Success /> */}
         </>
     );
 }
