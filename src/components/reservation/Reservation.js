@@ -23,11 +23,11 @@ export default function Reservation({ticketOrder, setTicketOrder}) {
     }, []);
 
     function getInput(e) {
-        if(e.target.className === "name-input") {
+        if(e.target.classList.contains("name-input") ) {
             setBuyerInfo({...buyerInfo, name: e.target.value});
             setTicketOrder({...ticketOrder, name: e.target.value});
         }
-        else {
+        if(e.target.classList.contains("cpf-input")) {
             setBuyerInfo({...buyerInfo, cpf: e.target.value});
             setTicketOrder({...ticketOrder, cpf: e.target.value});
         }

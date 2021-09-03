@@ -23,9 +23,6 @@ function App() {
         <Router>
             <TopBar />
             <Switch>
-                <Route path="/" exact>
-                    <Home ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
-                </Route>
                 <Route path="/sessoes/:idFilme" exact>
                     <Sessions ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
@@ -34,6 +31,9 @@ function App() {
                 </Route>
                 <Route path="/sucesso" exact>
                     <Success ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
+                </Route>
+                <Route path="/">
+                    <Home ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
             </Switch>
         </Router>
