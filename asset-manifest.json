@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cineflex/static/css/main.adf15614.chunk.css",
-    "main.js": "/cineflex/static/js/main.b0a5b036.chunk.js",
-    "main.js.map": "/cineflex/static/js/main.b0a5b036.chunk.js.map",
+    "main.js": "/cineflex/static/js/main.fa7fd161.chunk.js",
+    "main.js.map": "/cineflex/static/js/main.fa7fd161.chunk.js.map",
     "runtime-main.js": "/cineflex/static/js/runtime-main.59d83d7c.js",
     "runtime-main.js.map": "/cineflex/static/js/runtime-main.59d83d7c.js.map",
     "static/js/2.4d84f4ec.chunk.js": "/cineflex/static/js/2.4d84f4ec.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.59d83d7c.js",
     "static/js/2.4d84f4ec.chunk.js",
     "static/css/main.adf15614.chunk.css",
-    "static/js/main.b0a5b036.chunk.js"
+    "static/js/main.fa7fd161.chunk.js"
   ]
 }
