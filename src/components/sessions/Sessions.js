@@ -12,7 +12,7 @@ export default function Sessions() {
     useEffect(() => {
         axios
             .get(
-                `https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idFilme}/showtimes`
+                `https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies/${idFilme}/showtimes`
             )
             .then((res) => {
                 setMovieInfo(res.data);

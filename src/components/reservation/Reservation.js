@@ -1,5 +1,6 @@
 import "./reservation.css";
 import Bottom from "../bottom/Bottom";
+import Seat from "./Seat";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
@@ -17,7 +18,7 @@ export default function Reservation() {
     const {idSessao} = useParams();
 
     useEffect(() => {
-        axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSessao}/seats`).then(
+        axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${idSessao}/seats`).then(
             res => {
                 setSeats(res.data.seats);
                 setMovieInfo({title: res.data.movie.title, posterURL: res.data.movie.posterURL, weekday: res.data.day.weekday, time: res.data.name});
@@ -65,6 +66,3 @@ export default function Reservation() {
     );
 }
 
-function Seat({ number, isAvailable }) {
-    return <div className={isAvailable ? "seat available-color" : "seat unavailable-color"}>{number.padStart(2, "0")}</div>;
-}

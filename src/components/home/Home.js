@@ -10,7 +10,7 @@ export default function Home() {
 
     useEffect(
         () => {
-            axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies").then(
+            axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies").then(
                 res => {
                     setMovies(res.data);
                 }
