@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Seat({ number, isAvailable, seatId, buyerInfo, movieInfo }) {
+export default function Seat({ number, isAvailable, seatId, buyerInfo, ticketOrder }) {
 
     const [seatClass, setSeatClass] = useState(isAvailable ? "seat available-color" : "seat unavailable-color");
 
@@ -9,12 +9,12 @@ export default function Seat({ number, isAvailable, seatId, buyerInfo, movieInfo
             if(seatClass === "seat available-color") {
                 setSeatClass("seat selected-color")
                 buyerInfo.ids.push(seatId);
-                movieInfo.seatNumbers.push(number);
+                ticketOrder.seatNumbers.push(number);
             }
             else {
                 setSeatClass("seat available-color")
                 buyerInfo.ids = buyerInfo.ids.filter(id => id !== seatId);
-                movieInfo.seatNumbers = movieInfo.seatNumbers.filter(seatNumber => seatNumber !== number);
+                ticketOrder.seatNumbers = ticketOrder.seatNumbers.filter(seatNumber => seatNumber !== number);
             };
         }
         else {

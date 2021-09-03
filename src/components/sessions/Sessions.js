@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
-export default function Sessions() {
+export default function Sessions({ticketOrder, setTicketOrder}) {
     const [movieInfo, setMovieInfo] = useState({days: []});
     const { idFilme } = useParams();
 
@@ -29,6 +29,8 @@ export default function Sessions() {
                         date={session.date}
                         showtimes={session.showtimes}
                         key={session.id}
+                        ticketOrder={ticketOrder}
+                        setTicketOrder={setTicketOrder}
                     />
                 ))}
             </div>

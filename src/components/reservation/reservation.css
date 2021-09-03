@@ -74,7 +74,7 @@
     margin-bottom: 7px;
 }
 
-.information span {
+.name-span, .cpf-span {
     font-size: 18px;
     line-height: 21px;
 }
@@ -97,4 +97,13 @@ input::placeholder {
 
 .reserve-seat {
     margin-top: 57px;
+}
+
+.name-input.wrong, .cpf-input.wrong {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 17px;
 }

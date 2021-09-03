@@ -30,3 +30,7 @@ button {
     letter-spacing: 0.04em;
     cursor: pointer;
 }
+
+.hidden {
+    display: none;
+}

@@ -1,9 +1,11 @@
 import {Link} from "react-router-dom";
 
-export default function Movie({img, id}) {
+export default function Movie({img, id, title, ticketOrder, setTicketOrder}) {
     return (
-        <div className="movie">
-            <Link to={`/sessoes/${id}`}><img src={img} alt=""/></Link>
+        <Link to={`/sessoes/${id}`}>
+        <div className="movie" onClick={() => setTicketOrder({...ticketOrder, title: title})}>
+            <img src={img} alt=""/>
         </div>
+        </Link>
     );
 }

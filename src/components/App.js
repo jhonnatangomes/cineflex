@@ -6,23 +6,34 @@ import Sessions from "./sessions/Sessions";
 import Reservation from "./reservation/Reservation";
 import Success from "./success/Success";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {useState} from "react";
 
 function App() {
+
+    const [ticketOrder, setTicketOrder] = useState({
+        title: "",
+        date: "",
+        time: "",
+        seatNumbers: [],
+        name: "",
+        cpf: ""
+    })
+
     return (
         <Router>
             <TopBar />
             <Switch>
                 <Route path="/" exact>
-                    <Home />
+                    <Home ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
                 <Route path="/sessoes/:idFilme" exact>
-                    <Sessions />
+                    <Sessions ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
                 <Route path="/assentos/:idSessao" exact>
-                    <Reservation />
+                    <Reservation ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
                 <Route path="/sucesso" exact>
-                    <Success />
+                    <Success ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
                 </Route>
             </Switch>
         </Router>
