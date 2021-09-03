@@ -6,7 +6,8 @@ export default function Seat({ number, isAvailable }) {
 
     function selectSeat() {
         if(isAvailable){
-            setSeatClass("seat selected-color");
+            if(seatClass === "seat available-color") setSeatClass("seat selected-color");
+            else setSeatClass("seat available-color");
         }
         
     }
