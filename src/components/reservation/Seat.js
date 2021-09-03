@@ -9,6 +9,9 @@ export default function Seat({ number, isAvailable }) {
             if(seatClass === "seat available-color") setSeatClass("seat selected-color");
             else setSeatClass("seat available-color");
         }
+        else {
+            alert("Esse assento não está disponível");
+        }
         
     }
 
