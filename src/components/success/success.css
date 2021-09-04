@@ -10,7 +10,7 @@
 }
 
 .success > div:not(:first-child) {
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .success > div:not(:first-child) p:first-child {
