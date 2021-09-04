@@ -6,7 +6,6 @@ export default function Seat({
     seatId,
     buyerInfo,
     ticketOrder,
-    setTicketOrder,
 }) {
     const [seatClass, setSeatClass] = useState(
         isAvailable ? "seat available-color" : "seat unavailable-color"
@@ -18,14 +17,12 @@ export default function Seat({
                 setSeatClass("seat selected-color");
                 buyerInfo.ids.push(seatId);
                 ticketOrder.seatNumbers.push(number);
-                setTicketOrder({ ...ticketOrder });
             } else {
                 setSeatClass("seat available-color");
                 buyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
                 ticketOrder.seatNumbers = ticketOrder.seatNumbers.filter(
                     (seatNumber) => seatNumber !== number
                 );
-                setTicketOrder({ ...ticketOrder });
             }
         } else {
             alert("Esse assento não está disponível");
