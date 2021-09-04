@@ -16,6 +16,7 @@ export default function Sessions({ticketOrder, setTicketOrder}) {
             )
             .then((res) => {
                 setMovieInfo(res.data);
+                setTicketOrder({...ticketOrder, title: res.data.title});
             });
     }, [idFilme]);
 
@@ -29,8 +30,6 @@ export default function Sessions({ticketOrder, setTicketOrder}) {
                         date={session.date}
                         showtimes={session.showtimes}
                         key={session.id}
-                        ticketOrder={ticketOrder}
-                        setTicketOrder={setTicketOrder}
                     />
                 ))}
             </div>

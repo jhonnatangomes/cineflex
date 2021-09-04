@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function MovieDay({ weekday, date, showtimes, ticketOrder, setTicketOrder }) {
+export default function MovieDay({ weekday, date, showtimes }) {
     return (
         <div className="movie-day">
             <div className="day">
@@ -8,17 +8,17 @@ export default function MovieDay({ weekday, date, showtimes, ticketOrder, setTic
             </div>
             <div className="times">
                 {showtimes.map((showtime) => (
-                    <Time time={showtime.name} key={showtime.id} id={showtime.id} date={date} ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
+                    <Time time={showtime.name} key={showtime.id} id={showtime.id}/>
                 ))}
             </div>
         </div>
     );
 }
 
-function Time({ time, id, date, ticketOrder, setTicketOrder }) {
+function Time({ time, id }) {
     return (
         <Link to={`/assentos/${id}`} className="link">
-            <div className="time" onClick={() => setTicketOrder({...ticketOrder, date: date, time: time})}>{time}</div>
+            <div className="time">{time}</div>
         </Link>
     );
 }

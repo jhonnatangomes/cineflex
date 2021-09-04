@@ -27,6 +27,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
             )
             .then((res) => {
                 setMovieInfo(res.data);
+                setTicketOrder({...ticketOrder, title: res.data.movie.title, date: res.data.day.date, time: res.data.name})
             });
     }, [idSessao]);
 

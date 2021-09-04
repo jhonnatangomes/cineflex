@@ -39,10 +39,7 @@ function App() {
                     />
                 </Route>
                 <Route path="/">
-                    <Home
-                        ticketOrder={ticketOrder}
-                        setTicketOrder={setTicketOrder}
-                    />
+                    <Home />
                 </Route>
             </Switch>
         </Router>
