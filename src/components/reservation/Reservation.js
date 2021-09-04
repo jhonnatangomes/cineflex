@@ -16,7 +16,9 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
     });
     const { idSessao } = useParams();
     const [buyerInfo, setBuyerInfo] = useState({ ids: [], compradores: [] });
-    const [borderColor, setBorderColor] = useState([]);
+    let [borderColor, setBorderColor] = useState([]);
+
+    let invalidNames, invalidCpfs;
 
     console.log(buyerInfo);
 
@@ -31,45 +33,48 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
     }, [idSessao]);
 
     function sendInformation(e) {
-        // console.log("name: ");
-        // console.log(isInvalidName());
-        // console.log("cpf: ");
-        // console.log(isInvalidCPF())
+        AreThereInvalidNames();
+        AreThereInvalidCPFs();
         if (
-            isInvalidName().length !== 0 ||
-            isInvalidCPF().length !== 0 ||
+            invalidNames ||
+            invalidCpfs ||
             !isThereASelectedSeat()
         ) {
             e.preventDefault();
         } else {
             // axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
             console.log(buyerInfo);
+            console.log("enviou");
         }
         if (!isThereASelectedSeat()) {
             alert("Selecione pelo menos um assento");
         }
     }
 
-    function isInvalidName() {
-        let invalidNames = [];
-        buyerInfo.compradores.forEach((comprador) => {
+    function AreThereInvalidNames() {
+        invalidNames = false;
+        buyerInfo.compradores.forEach((comprador, i) => {
             if (comprador.nome === "") {
-                invalidNames.push({ id: comprador.idAssento });
+                borderColor[i].nameColor = "red";
+                invalidNames = true;
+            } else {
+                borderColor[i].nameColor = "";
             }
         });
-        
-        return invalidNames;
+        setBorderColor([...borderColor]);
     }
 
-    function isInvalidCPF() {
-        let invalidCpfs = [];
-        buyerInfo.compradores.forEach((comprador) => {
+    function AreThereInvalidCPFs() {
+        invalidCpfs = false;
+        buyerInfo.compradores.forEach((comprador, i) => {
             if (!/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(comprador.cpf)) {
-                invalidCpfs.push({ id: comprador.idAssento });
+                borderColor[i].cpfColor = "red";
+                invalidCpfs = true;
+            } else {
+                borderColor[i].cpfColor = "";
             }
         });
-        console.log(invalidCpfs);
-        return invalidCpfs;
+        setBorderColor([...borderColor]);
     }
 
     function isThereASelectedSeat() {
@@ -109,13 +114,11 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                         Indisponível
                     </div>
                 </div>
-                {ticketOrder.seatNumbers.map((seatNumber, i) => (
+                {borderColor.map((inputColor, i) => (
                     <Inputs
                         buyerInfo={buyerInfo}
                         setBuyerInfo={setBuyerInfo}
-                        borderColor={borderColor.find(
-                            (input) => input.seatNumber === seatNumber
-                        )}
+                        borderColor={inputColor}
                         key={i}
                         index={i}
                     />

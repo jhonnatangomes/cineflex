@@ -26,6 +26,7 @@ export default function Seat({
                 });
                 ticketOrder.seatNumbers.push(number);
                 borderColor.push({
+                    seatId: seatId,
                     seatNumber: number,
                     nameColor: "",
                     cpfColor: "",
@@ -48,6 +49,7 @@ export default function Seat({
         } else {
             alert("Esse assento não está disponível");
         }
+
     }
 
     return (

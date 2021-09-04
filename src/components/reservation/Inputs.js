@@ -52,7 +52,7 @@ export default function Inputs({
                     value={buyerInfo.compradores[index].nome}
                     border={borderColor.nameColor}
                 />
-                <ErrorSpan>Digite um nome válido</ErrorSpan>
+                <ErrorSpan border={borderColor.nameColor}>Digite um nome válido</ErrorSpan>
             </div>
             <div className="cpf">
                 <span className="cpf-span">CPF do comprador: </span>
@@ -64,7 +64,7 @@ export default function Inputs({
                     value={buyerInfo.compradores[index].cpf}
                     border={borderColor.cpfColor}
                 />
-                <ErrorSpan>Digite o CPF no formato XXX.XXX.XXX-XX</ErrorSpan>
+                <ErrorSpan border={borderColor.cpfColor}>Digite o CPF no formato XXX.XXX.XXX-XX</ErrorSpan>
             </div>
         </div>
     );
@@ -89,5 +89,6 @@ const Input = styled.input`
 const ErrorSpan = styled.span`
     color: red;
     font-size: 17px;
-    display: none;
+    display: ${ ({border}) => border === "red" ? "block" : "none" };
 `;
+
