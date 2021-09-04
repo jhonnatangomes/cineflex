@@ -18,7 +18,6 @@ export default function Home({ticketOrder, setTicketOrder}) {
         }, []
     );
     
-
     return (
         <div className="home">
             <div className="page-title">Selecione o filme</div>

@@ -5,9 +5,9 @@
 .movies {
     padding-left: 30px;
     padding-right: 25px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-    column-gap: 30px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .movie {

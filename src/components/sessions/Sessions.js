@@ -17,7 +17,7 @@ export default function Sessions({ticketOrder, setTicketOrder}) {
             .then((res) => {
                 setMovieInfo(res.data);
             });
-    }, []);
+    }, [idFilme]);
 
     return (
         <div className="sessions-page">

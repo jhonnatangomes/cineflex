@@ -9,8 +9,8 @@
 
 .seats {    
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(26px, 1fr));
-    column-gap: 7px;
+    grid-template-columns: repeat(10, auto);
+    justify-items: center;
     row-gap: 18px;
 }
 

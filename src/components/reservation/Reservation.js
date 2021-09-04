@@ -20,7 +20,7 @@ export default function Reservation({ticketOrder, setTicketOrder}) {
                 setMovieInfo(res.data);
             }
         )
-    }, []);
+    }, [idSessao]);
 
     function getInput(e) {
         if(e.target.classList.contains("name-input") ) {
