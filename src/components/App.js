@@ -21,7 +21,7 @@ function App() {
 
     return (
         <Router>
-            <TopBar />
+            <TopBar ticketOrder={ticketOrder}/>
             <Switch>
                 <Route path="/sessoes/:idFilme" exact>
                     <Sessions ticketOrder={ticketOrder} setTicketOrder={setTicketOrder}/>
