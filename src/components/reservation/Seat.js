@@ -24,7 +24,11 @@ export default function Seat({
                     nome: "",
                     cpf: "",
                 });
-                ticketOrder.buyers.push({seatNumber: number, name: "", cpf: ""});
+                ticketOrder.buyers.push({
+                    seatNumber: number,
+                    name: "",
+                    cpf: "",
+                });
                 borderColor.push({
                     seatId: seatId,
                     seatNumber: number,
@@ -32,24 +36,28 @@ export default function Seat({
                     cpfColor: "",
                 });
             } else {
-                setSeatClass("seat available-color");
-                buyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
-                buyerInfo.compradores = buyerInfo.compradores.filter(
-                    (comprador) => comprador.idAssento !== seatId
+                const deleteSeat = window.confirm(
+                    "Você realmente quer desmarcar esse assento?"
                 );
-                ticketOrder.buyers = ticketOrder.buyers.filter(
-                    (buyer) => buyer.seatNumber !== number
-                );
-                borderColor = borderColor.filter(
-                    (input) => input.seatNumber !== number
-                );
+                if (deleteSeat) {
+                    setSeatClass("seat available-color");
+                    buyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
+                    buyerInfo.compradores = buyerInfo.compradores.filter(
+                        (comprador) => comprador.idAssento !== seatId
+                    );
+                    ticketOrder.buyers = ticketOrder.buyers.filter(
+                        (buyer) => buyer.seatNumber !== number
+                    );
+                    borderColor = borderColor.filter(
+                        (input) => input.seatNumber !== number
+                    );
+                }
             }
             setTicketOrder({ ...ticketOrder });
             setBorderColor([...borderColor]);
         } else {
             alert("Esse assento não está disponível");
         }
-
     }
 
     return (
