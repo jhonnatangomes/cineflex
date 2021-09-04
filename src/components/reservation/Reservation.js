@@ -20,8 +20,6 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
 
     let invalidNames, invalidCpfs;
 
-    console.log(buyerInfo);
-
     useEffect(() => {
         axios
             .get(
@@ -119,6 +117,8 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                         buyerInfo={buyerInfo}
                         setBuyerInfo={setBuyerInfo}
                         borderColor={inputColor}
+                        ticketOrder={ticketOrder}
+                        setTicketOrder={setTicketOrder}
                         key={i}
                         index={i}
                     />

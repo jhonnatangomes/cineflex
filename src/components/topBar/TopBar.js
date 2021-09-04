@@ -6,7 +6,7 @@ export default function TopBar({ ticketOrder }) {
     const history = useHistory();
 
     function goBack() {
-        ticketOrder.seatNumbers = [];
+        ticketOrder.buyers = [];
         history.goBack();
     }
 

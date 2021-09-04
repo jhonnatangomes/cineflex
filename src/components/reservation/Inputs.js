@@ -4,18 +4,22 @@ export default function Inputs({
     buyerInfo,
     setBuyerInfo,
     borderColor,
-    index
+    index,
+    ticketOrder,
+    setTicketOrder
 }) {
 
     function getInput(e) {
         if (e.target.classList.contains("name-input")) {
             buyerInfo.compradores[index].nome = e.target.value;
-            setBuyerInfo({...buyerInfo});
+            ticketOrder.buyers[index].name = e.target.value;
         }
         if (e.target.classList.contains("cpf-input")) {
             buyerInfo.compradores[index].cpf = formatCPF(e.target.value);
-            setBuyerInfo({...buyerInfo});
+            ticketOrder.buyers[index].cpf = formatCPF(e.target.value);
         }
+        setBuyerInfo({...buyerInfo});
+        setTicketOrder({...ticketOrder});
     }
 
     function formatCPF(cpf) {

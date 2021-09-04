@@ -24,7 +24,7 @@ export default function Seat({
                     nome: "",
                     cpf: "",
                 });
-                ticketOrder.seatNumbers.push(number);
+                ticketOrder.buyers.push({seatNumber: number, name: "", cpf: ""});
                 borderColor.push({
                     seatId: seatId,
                     seatNumber: number,
@@ -37,8 +37,8 @@ export default function Seat({
                 buyerInfo.compradores = buyerInfo.compradores.filter(
                     (comprador) => comprador.idAssento !== seatId
                 );
-                ticketOrder.seatNumbers = ticketOrder.seatNumbers.filter(
-                    (seatNumber) => seatNumber !== number
+                ticketOrder.buyers = ticketOrder.buyers.filter(
+                    (buyer) => buyer.seatNumber !== number
                 );
                 borderColor = borderColor.filter(
                     (input) => input.seatNumber !== number

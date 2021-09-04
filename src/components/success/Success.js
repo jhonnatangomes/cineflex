@@ -1,40 +1,48 @@
 import "./success.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function Success ({ticketOrder, setTicketOrder}) {
-
-    const {title, date, time, seatNumbers, name, cpf} = ticketOrder;
+export default function Success({ ticketOrder, setTicketOrder }) {
+    const { title, date, time, buyers } = ticketOrder;
 
     function clearOrder() {
         setTicketOrder({
             title: "",
             date: "",
             time: "",
-            seatNumbers: [],
-            name: "",
-            cpf: ""
-        })
-    };
+            buyers: [],
+        });
+    }
 
     return (
         <div className="success">
-            <div className="page-title">Pedido feito <br/> com sucesso!</div>
+            <div className="page-title">
+                Pedido feito <br /> com sucesso!
+            </div>
             <div className="movie-and-session">
                 <p>Filme e sessão</p>
                 <p>{title}</p>
-                <p>{date} {time}</p>
+                <p>
+                    {date} {time}
+                </p>
             </div>
             <div className="tickets">
                 <p>Ingressos</p>
-                {seatNumbers.map((seatNumber, i) => <p key={i}>Assento {seatNumber}</p>)}
+                {buyers.map((buyer, i) => (
+                    <p key={i}>Assento {buyer.seatNumber}</p>
+                ))}
             </div>
-            <div className="buyer">
-                <p>Comprador</p>
-                <p>Nome: {name}</p>
-                <p>CPF: {cpf}</p>
-            </div>
-            <Link to="/"><button className="return-to-home" onClick={clearOrder}>Voltar para Home</button></Link>
+            {buyers.map((buyer, i) => (
+                <div className="buyer" key={i}>
+                    <p>Comprador do assento {buyer.seatNumber}</p>
+                    <p>Nome: {buyer.name}</p>
+                    <p>CPF: {buyer.cpf}</p>
+                </div>
+            ))}
+            <Link to="/">
+                <button className="return-to-home" onClick={clearOrder}>
+                    Voltar para Home
+                </button>
+            </Link>
         </div>
     );
 }
-

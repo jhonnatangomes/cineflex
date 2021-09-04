@@ -13,9 +13,7 @@ function App() {
         title: "",
         date: "",
         time: "",
-        seatNumbers: [],
-        name: "",
-        cpf: "",
+        buyers: []
     });
 
     return (
