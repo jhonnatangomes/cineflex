@@ -6,6 +6,9 @@ export default function Seat({
     seatId,
     buyerInfo,
     ticketOrder,
+    setTicketOrder,
+    borderColor,
+    setBorderColor,
 }) {
     const [seatClass, setSeatClass] = useState(
         isAvailable ? "seat available-color" : "seat unavailable-color"
@@ -16,14 +19,32 @@ export default function Seat({
             if (seatClass === "seat available-color") {
                 setSeatClass("seat selected-color");
                 buyerInfo.ids.push(seatId);
+                buyerInfo.compradores.push({
+                    idAssento: seatId,
+                    nome: "",
+                    cpf: "",
+                });
                 ticketOrder.seatNumbers.push(number);
+                borderColor.push({
+                    seatNumber: number,
+                    nameColor: "",
+                    cpfColor: "",
+                });
             } else {
                 setSeatClass("seat available-color");
                 buyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
+                buyerInfo.compradores = buyerInfo.compradores.filter(
+                    (comprador) => comprador.idAssento !== seatId
+                );
                 ticketOrder.seatNumbers = ticketOrder.seatNumbers.filter(
                     (seatNumber) => seatNumber !== number
                 );
+                borderColor = borderColor.filter(
+                    (input) => input.seatNumber !== number
+                );
             }
+            setTicketOrder({ ...ticketOrder });
+            setBorderColor([...borderColor]);
         } else {
             alert("Esse assento não está disponível");
         }
