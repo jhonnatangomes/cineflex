@@ -28,8 +28,8 @@ export default function Reservation({ticketOrder, setTicketOrder}) {
             setTicketOrder({...ticketOrder, name: e.target.value});
         }
         if(e.target.classList.contains("cpf-input")) {
-            setBuyerInfo({...buyerInfo, cpf: e.target.value});
-            setTicketOrder({...ticketOrder, cpf: e.target.value});
+            setBuyerInfo({...buyerInfo, cpf: formatCPF(e.target.value)});
+            setTicketOrder({...ticketOrder, cpf: formatCPF(e.target.value)});
         }
     }
 
@@ -38,7 +38,8 @@ export default function Reservation({ticketOrder, setTicketOrder}) {
             e.preventDefault();
         }
         else{
-            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
+            // axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
+            console.log(buyerInfo);
         }
         if(!isValidName()){
             setNameInputClass(["name-input wrong", "error-message"]);
@@ -62,6 +63,27 @@ export default function Reservation({ticketOrder, setTicketOrder}) {
 
     function isThereASelectedSeat () {
         return buyerInfo.ids.length;
+    }
+
+    function formatCPF(cpf) {
+        let formattedCPF = cpf;
+        const lastChar = cpf[cpf.length - 1];
+        if (cpf.length === 4 && cpf[3] !== "."){
+            formattedCPF = cpf.slice(0, 3) + "." + cpf[3];
+        }
+        if (cpf.length === 8 && cpf[7] !== "."){
+            formattedCPF = cpf.slice(0, 7) + "." + cpf[7];
+        }
+        if (cpf.length === 12 && cpf[11] !== "-"){
+            formattedCPF = cpf.slice(0, 11) + "-" + cpf[11];
+        }
+        if(lastChar !== "." && lastChar !== "-" && isNaN(Number(lastChar))){
+            formattedCPF = cpf.slice(0, cpf.length - 1);
+        }
+        if(cpf.length > 14){
+            formattedCPF = cpf.slice(0, cpf.length - 1);
+        }
+        return formattedCPF;
     }
 
     return (
