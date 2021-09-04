@@ -7,7 +7,7 @@
     padding: 0 24px;
 }
 
-.seats {    
+.seats {
     display: grid;
     grid-template-columns: repeat(10, auto);
     justify-items: center;
@@ -20,8 +20,8 @@
     letter-spacing: 0.04em;
     width: 26px;
     height: 26px;
-    background-color: #C3CFD9;
-    border: 1px solid #808F9D;
+    background-color: #c3cfd9;
+    border: 1px solid #808f9d;
     border-radius: 12px;
     display: flex;
     justify-content: center;
@@ -52,18 +52,18 @@
 }
 
 .selected-color {
-    background-color: #8DD7CF;
-    border: 1px solid #45BDB0;
+    background-color: #8dd7cf;
+    border: 1px solid #45bdb0;
 }
 
 .available-color {
-    background-color: #C3CFD9;
-    border: 1px solid #808F9D;
+    background-color: #c3cfd9;
+    border: 1px solid #808f9d;
 }
 
 .unavailable-color {
-    background-color: #FBE192;
-    border: 1px solid #F7C52B;
+    background-color: #fbe192;
+    border: 1px solid #f7c52b;
 }
 
 .information {
@@ -74,15 +74,22 @@
     margin-bottom: 7px;
 }
 
-.name-span, .cpf-span {
+.name-span,
+.cpf-span {
     font-size: 18px;
     line-height: 21px;
+}
+
+.seat-information {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 10px;
 }
 
 .information input {
     width: 100%;
     height: 51px;
-    border: 1px solid #D5D5D5;
+    border: 1px solid #d5d5d5;
     border-radius: 3px;
     padding-left: 18px;
     outline: none;
@@ -90,16 +97,17 @@
 
 input::placeholder {
     font-style: italic;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
-    color: #AFAFAF;
+    color: #afafaf;
 }
 
 .reserve-seat {
     margin-top: 57px;
 }
 
-.name-input.wrong, .cpf-input.wrong {
+.name-input.wrong,
+.cpf-input.wrong {
     border: 1px solid red;
 }
 
