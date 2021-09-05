@@ -2,23 +2,20 @@ import styled from "styled-components";
 
 export default function Inputs({
     buyerInfo,
-    setBuyerInfo,
-    borderColor,
-    index,
+    i,
     ticketOrder,
     setTicketOrder
 }) {
 
     function getInput(e) {
         if (e.target.classList.contains("name-input")) {
-            buyerInfo.compradores[index].nome = e.target.value;
-            ticketOrder.buyers[index].name = e.target.value;
+            buyerInfo.compradores[i].nome = e.target.value;
+            ticketOrder.buyers[i].name = e.target.value;
         }
         if (e.target.classList.contains("cpf-input")) {
-            buyerInfo.compradores[index].cpf = formatCPF(e.target.value);
-            ticketOrder.buyers[index].cpf = formatCPF(e.target.value);
+            buyerInfo.compradores[i].cpf = formatCPF(e.target.value);
+            ticketOrder.buyers[i].cpf = formatCPF(e.target.value);
         }
-        setBuyerInfo({...buyerInfo});
         setTicketOrder({...ticketOrder});
     }
 
@@ -45,7 +42,7 @@ export default function Inputs({
 
     return (
         <div className="information">
-            <div className="seat-information">Assento {borderColor.seatNumber}</div>
+            <div className="seat-information">Assento {ticketOrder.buyers[i].seatNumber}</div>
             <div className="name">
                 <span className="name-span">Nome do comprador: </span>
                 <Input
@@ -53,10 +50,10 @@ export default function Inputs({
                     placeholder="Digite seu nome..."
                     className="name-input"
                     onChange={(e) => getInput(e)}
-                    value={buyerInfo.compradores[index].nome}
-                    border={ticketOrder.buyers[index].nameColor}
+                    value={ticketOrder.buyers[i].name}
+                    border={ticketOrder.buyers[i].nameColor}
                 />
-                <ErrorSpan border={ticketOrder.buyers[index].nameColor}>Digite um nome válido</ErrorSpan>
+                <ErrorSpan border={ticketOrder.buyers[i].nameColor}>Digite um nome válido</ErrorSpan>
             </div>
             <div className="cpf">
                 <span className="cpf-span">CPF do comprador: </span>
@@ -65,10 +62,10 @@ export default function Inputs({
                     placeholder="Digite seu CPF..."
                     className="cpf-input"
                     onChange={(e) => getInput(e)}
-                    value={buyerInfo.compradores[index].cpf}
-                    border={ticketOrder.buyers[index].cpfColor}
+                    value={ticketOrder.buyers[i].cpf}
+                    border={ticketOrder.buyers[i].cpfColor}
                 />
-                <ErrorSpan border={ticketOrder.buyers[index].cpfColor}>Digite o CPF no formato XXX.XXX.XXX-XX</ErrorSpan>
+                <ErrorSpan border={ticketOrder.buyers[i].cpfColor}>Digite o CPF no formato XXX.XXX.XXX-XX</ErrorSpan>
             </div>
         </div>
     );

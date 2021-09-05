@@ -15,15 +15,9 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         name: "",
     });
     const { idSessao } = useParams();
-    const [buyerInfo, setBuyerInfo] = useState({ ids: [], compradores: [] });
-    let [borderColor, setBorderColor] = useState([]);
+    const [buyerInfo] = useState({ ids: [], compradores: [] });
 
     let invalidNames, invalidCpfs;
-
-    // console.log("ticket order: ");
-    // console.log(ticketOrder);
-    // console.log("buyer info: ");
-    // console.log(buyerInfo);
 
     useEffect(() => {
         axios
@@ -32,8 +26,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
             )
             .then((res) => {
                 setMovieInfo(res.data);
-                setTicketOrder({...ticketOrder, title: res.data.movie.title, date: res.data.day.date, time: res.data.name})
-                console.log("done");
+                setTicketOrder({...ticketOrder, title: res.data.movie.title, date: res.data.day.date, time: res.data.name});
             });
     }, [idSessao]);
 
@@ -47,9 +40,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         ) {
             e.preventDefault();
         } else {
-            // axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
-            console.log(buyerInfo);
-            console.log("enviou");
+            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
         }
         if (!isThereASelectedSeat()) {
             alert("Selecione pelo menos um assento");
@@ -100,8 +91,6 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                             buyerInfo={buyerInfo}
                             ticketOrder={ticketOrder}
                             setTicketOrder={setTicketOrder}
-                            borderColor={borderColor}
-                            setBorderColor={setBorderColor}
                         />
                     ))}
                 </div>
@@ -119,15 +108,13 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                         Indisponível
                     </div>
                 </div>
-                {borderColor.map((inputColor, i) => (
+                {ticketOrder.buyers.map((buyer, i) => (
                     <Inputs
                         buyerInfo={buyerInfo}
-                        setBuyerInfo={setBuyerInfo}
-                        borderColor={inputColor}
                         ticketOrder={ticketOrder}
                         setTicketOrder={setTicketOrder}
                         key={i}
-                        index={i}
+                        i={i}
                     />
                 ))}
                 <Link to="/sucesso">

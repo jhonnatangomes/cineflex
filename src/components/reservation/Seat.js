@@ -6,9 +6,7 @@ export default function Seat({
     seatId,
     buyerInfo,
     ticketOrder,
-    setTicketOrder,
-    borderColor,
-    setBorderColor,
+    setTicketOrder
 }) {
     const [seatClass, setSeatClass] = useState(
         isAvailable ? "seat available-color" : "seat unavailable-color"
@@ -31,12 +29,6 @@ export default function Seat({
                     nameColor: "",
                     cpfColor: ""
                 });
-                borderColor.push({
-                    seatId: seatId,
-                    seatNumber: number,
-                    nameColor: "",
-                    cpfColor: "",
-                });
             } else {
                 const deleteSeat = window.confirm(
                     "Você realmente quer desmarcar esse assento?"
@@ -50,13 +42,9 @@ export default function Seat({
                     ticketOrder.buyers = ticketOrder.buyers.filter(
                         (buyer) => buyer.seatNumber !== number
                     );
-                    borderColor = borderColor.filter(
-                        (input) => input.seatNumber !== number
-                    );
                 }
             }
             setTicketOrder({ ...ticketOrder });
-            setBorderColor([...borderColor]);
         } else {
             alert("Esse assento não está disponível");
         }
