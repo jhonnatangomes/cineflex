@@ -28,6 +28,8 @@ export default function Seat({
                     seatNumber: number,
                     name: "",
                     cpf: "",
+                    nameColor: "",
+                    cpfColor: ""
                 });
                 borderColor.push({
                     seatId: seatId,

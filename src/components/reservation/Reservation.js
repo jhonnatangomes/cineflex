@@ -20,6 +20,11 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
 
     let invalidNames, invalidCpfs;
 
+    // console.log("ticket order: ");
+    // console.log(ticketOrder);
+    // console.log("buyer info: ");
+    // console.log(buyerInfo);
+
     useEffect(() => {
         axios
             .get(
@@ -28,6 +33,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
             .then((res) => {
                 setMovieInfo(res.data);
                 setTicketOrder({...ticketOrder, title: res.data.movie.title, date: res.data.day.date, time: res.data.name})
+                console.log("done");
             });
     }, [idSessao]);
 
@@ -54,26 +60,26 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         invalidNames = false;
         buyerInfo.compradores.forEach((comprador, i) => {
             if (comprador.nome === "") {
-                borderColor[i].nameColor = "red";
+                ticketOrder.buyers[i].nameColor = "red";
                 invalidNames = true;
             } else {
-                borderColor[i].nameColor = "";
+                ticketOrder.buyers[i].nameColor = "";
             }
         });
-        setBorderColor([...borderColor]);
+        setTicketOrder({...ticketOrder});
     }
 
     function AreThereInvalidCPFs() {
         invalidCpfs = false;
         buyerInfo.compradores.forEach((comprador, i) => {
             if (!/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(comprador.cpf)) {
-                borderColor[i].cpfColor = "red";
+                ticketOrder.buyers[i].cpfColor = "red";
                 invalidCpfs = true;
             } else {
-                borderColor[i].cpfColor = "";
+                ticketOrder.buyers[i].cpfColor = "";
             }
         });
-        setBorderColor([...borderColor]);
+        setTicketOrder({...ticketOrder});
     }
 
     function isThereASelectedSeat() {
