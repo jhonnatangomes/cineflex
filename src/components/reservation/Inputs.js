@@ -15,8 +15,8 @@ export default function Inputs({
             newTicketOrder.buyers[i].name = e.target.value;
         }
         if (e.target.classList.contains("cpf-input")) {
-            newBuyerInfo.compradores[i].cpf = formatCPFtoServer(e.target.value);
             newTicketOrder.buyers[i].cpf = formatCPF(e.target.value);
+            newBuyerInfo.compradores[i].cpf = removeDotsAndDashes(newTicketOrder.buyers[i].cpf);
         }
         setBuyerInfo({ ...newBuyerInfo });
         setTicketOrder({ ...newTicketOrder });
@@ -43,14 +43,12 @@ export default function Inputs({
         return formattedCPF;
     }
 
-    function formatCPFtoServer(cpf) {
-        let formattedCPF = cpf;
-        const lastChar = cpf[cpf.length - 1];
-        if (cpf.length > 14) {
-            formattedCPF = cpf.slice(0, cpf.length - 1);
-        }
-        if (lastChar !== "." && lastChar !== "-" && isNaN(Number(lastChar))) {
-            formattedCPF = cpf.slice(0, cpf.length - 1);
+    function removeDotsAndDashes(cpf) {
+        let formattedCPF = "";
+        for(let char of cpf){
+            if(char !== "." & char !== "-"){
+                formattedCPF += char;
+            }
         }
         return formattedCPF;
     }

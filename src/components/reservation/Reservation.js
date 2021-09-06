@@ -41,8 +41,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         ) {
             e.preventDefault();
         } else {
-            // axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
-            console.log(buyerInfo);
+            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
         }
         if (!isThereASelectedSeat()) {
             alert("Selecione pelo menos um assento");
@@ -51,12 +50,12 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
 
     function AreThereInvalidNames() {
         invalidNames = false;
-        buyerInfo.compradores.forEach((comprador, i) => {
-            if (comprador.nome === "") {
-                ticketOrder.buyers[i].nameColor = "red";
+        ticketOrder.buyers.forEach((buyer) => {
+            if (buyer.name === "") {
+                buyer.nameColor = "red";
                 invalidNames = true;
             } else {
-                ticketOrder.buyers[i].nameColor = "";
+                buyer.nameColor = "";
             }
         });
         setTicketOrder({...ticketOrder});
@@ -64,12 +63,12 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
 
     function AreThereInvalidCPFs() {
         invalidCpfs = false;
-        buyerInfo.compradores.forEach((comprador, i) => {
-            if (!/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(comprador.cpf)) {
-                ticketOrder.buyers[i].cpfColor = "red";
+        ticketOrder.buyers.forEach((buyer) => {
+            if (!/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/.test(buyer.cpf)) {
+                buyer.cpfColor = "red";
                 invalidCpfs = true;
             } else {
-                ticketOrder.buyers[i].cpfColor = "";
+                buyer.cpfColor = "";
             }
         });
         setTicketOrder({...ticketOrder});
