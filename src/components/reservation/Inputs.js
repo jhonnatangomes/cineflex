@@ -2,21 +2,25 @@ import styled from "styled-components";
 
 export default function Inputs({
     buyerInfo,
+    setBuyerInfo,
     i,
     ticketOrder,
     setTicketOrder
 }) {
 
     function getInput(e) {
+        const newBuyerInfo = {...buyerInfo};
+        const newTicketOrder = {...ticketOrder};
         if (e.target.classList.contains("name-input")) {
-            buyerInfo.compradores[i].nome = e.target.value;
-            ticketOrder.buyers[i].name = e.target.value;
+            newBuyerInfo.compradores[i].nome = e.target.value;
+            newTicketOrder.buyers[i].name = e.target.value;
         }
         if (e.target.classList.contains("cpf-input")) {
-            buyerInfo.compradores[i].cpf = formatCPF(e.target.value);
-            ticketOrder.buyers[i].cpf = formatCPF(e.target.value);
+            newBuyerInfo.compradores[i].cpf = formatCPF(e.target.value);
+            newTicketOrder.buyers[i].cpf = formatCPF(e.target.value);
         }
-        setTicketOrder({...ticketOrder});
+        setBuyerInfo({...newBuyerInfo});
+        setTicketOrder({...newTicketOrder});
     }
 
     function formatCPF(cpf) {

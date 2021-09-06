@@ -5,6 +5,7 @@ export default function Seat({
     isAvailable,
     seatId,
     buyerInfo,
+    setBuyerInfo,
     ticketOrder,
     setTicketOrder
 }) {
@@ -14,15 +15,17 @@ export default function Seat({
 
     function selectSeat() {
         if (isAvailable) {
+            const newBuyerInfo = {...buyerInfo};
+            const newTicketOrder = {...ticketOrder};
             if (seatClass === "seat available-color") {
                 setSeatClass("seat selected-color");
-                buyerInfo.ids.push(seatId);
-                buyerInfo.compradores.push({
+                newBuyerInfo.ids.push(seatId);
+                newBuyerInfo.compradores.push({
                     idAssento: seatId,
                     nome: "",
                     cpf: "",
                 });
-                ticketOrder.buyers.push({
+                newTicketOrder.buyers.push({
                     seatNumber: number,
                     name: "",
                     cpf: "",
@@ -35,16 +38,17 @@ export default function Seat({
                 );
                 if (deleteSeat) {
                     setSeatClass("seat available-color");
-                    buyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
-                    buyerInfo.compradores = buyerInfo.compradores.filter(
+                    newBuyerInfo.ids = buyerInfo.ids.filter((id) => id !== seatId);
+                    newBuyerInfo.compradores = buyerInfo.compradores.filter(
                         (comprador) => comprador.idAssento !== seatId
                     );
-                    ticketOrder.buyers = ticketOrder.buyers.filter(
+                    newTicketOrder.buyers = ticketOrder.buyers.filter(
                         (buyer) => buyer.seatNumber !== number
                     );
                 }
             }
-            setTicketOrder({ ...ticketOrder });
+            setBuyerInfo({...newBuyerInfo});
+            setTicketOrder({ ...newTicketOrder });
         } else {
             alert("Esse assento não está disponível");
         }

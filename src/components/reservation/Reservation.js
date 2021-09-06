@@ -15,7 +15,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         name: "",
     });
     const { idSessao } = useParams();
-    const [buyerInfo] = useState({ ids: [], compradores: [] });
+    const [buyerInfo, setBuyerInfo] = useState({ ids: [], compradores: [] });
 
     let invalidNames, invalidCpfs;
 
@@ -89,6 +89,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                             isAvailable={seat.isAvailable}
                             seatId={seat.id}
                             buyerInfo={buyerInfo}
+                            setBuyerInfo={setBuyerInfo}
                             ticketOrder={ticketOrder}
                             setTicketOrder={setTicketOrder}
                         />
@@ -111,6 +112,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
                 {ticketOrder.buyers.map((buyer, i) => (
                     <Inputs
                         buyerInfo={buyerInfo}
+                        setBuyerInfo={setBuyerInfo}
                         ticketOrder={ticketOrder}
                         setTicketOrder={setTicketOrder}
                         key={i}
