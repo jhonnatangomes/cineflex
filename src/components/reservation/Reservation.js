@@ -18,6 +18,7 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
     const [buyerInfo, setBuyerInfo] = useState({ ids: [], compradores: [] });
 
     let invalidNames, invalidCpfs;
+    console.log(buyerInfo);
 
     useEffect(() => {
         axios
@@ -40,7 +41,8 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
         ) {
             e.preventDefault();
         } else {
-            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
+            // axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many", buyerInfo);
+            console.log(buyerInfo);
         }
         if (!isThereASelectedSeat()) {
             alert("Selecione pelo menos um assento");

@@ -5,22 +5,21 @@ export default function Inputs({
     setBuyerInfo,
     i,
     ticketOrder,
-    setTicketOrder
+    setTicketOrder,
 }) {
-
     function getInput(e) {
-        const newBuyerInfo = {...buyerInfo};
-        const newTicketOrder = {...ticketOrder};
+        const newBuyerInfo = { ...buyerInfo };
+        const newTicketOrder = { ...ticketOrder };
         if (e.target.classList.contains("name-input")) {
             newBuyerInfo.compradores[i].nome = e.target.value;
             newTicketOrder.buyers[i].name = e.target.value;
         }
         if (e.target.classList.contains("cpf-input")) {
-            newBuyerInfo.compradores[i].cpf = formatCPF(e.target.value);
+            newBuyerInfo.compradores[i].cpf = formatCPFtoServer(e.target.value);
             newTicketOrder.buyers[i].cpf = formatCPF(e.target.value);
         }
-        setBuyerInfo({...newBuyerInfo});
-        setTicketOrder({...newTicketOrder});
+        setBuyerInfo({ ...newBuyerInfo });
+        setTicketOrder({ ...newTicketOrder });
     }
 
     function formatCPF(cpf) {
@@ -44,9 +43,23 @@ export default function Inputs({
         return formattedCPF;
     }
 
+    function formatCPFtoServer(cpf) {
+        let formattedCPF = cpf;
+        const lastChar = cpf[cpf.length - 1];
+        if (cpf.length > 14) {
+            formattedCPF = cpf.slice(0, cpf.length - 1);
+        }
+        if (lastChar !== "." && lastChar !== "-" && isNaN(Number(lastChar))) {
+            formattedCPF = cpf.slice(0, cpf.length - 1);
+        }
+        return formattedCPF;
+    }
+
     return (
         <div className="information">
-            <div className="seat-information">Assento {ticketOrder.buyers[i].seatNumber}</div>
+            <div className="seat-information">
+                Assento {ticketOrder.buyers[i].seatNumber}
+            </div>
             <div className="name">
                 <span className="name-span">Nome do comprador: </span>
                 <Input
@@ -57,7 +70,9 @@ export default function Inputs({
                     value={ticketOrder.buyers[i].name}
                     border={ticketOrder.buyers[i].nameColor}
                 />
-                <ErrorSpan border={ticketOrder.buyers[i].nameColor}>Digite um nome válido</ErrorSpan>
+                <ErrorSpan border={ticketOrder.buyers[i].nameColor}>
+                    Digite um nome válido
+                </ErrorSpan>
             </div>
             <div className="cpf">
                 <span className="cpf-span">CPF do comprador: </span>
@@ -69,7 +84,9 @@ export default function Inputs({
                     value={ticketOrder.buyers[i].cpf}
                     border={ticketOrder.buyers[i].cpfColor}
                 />
-                <ErrorSpan border={ticketOrder.buyers[i].cpfColor}>Digite o CPF no formato XXX.XXX.XXX-XX</ErrorSpan>
+                <ErrorSpan border={ticketOrder.buyers[i].cpfColor}>
+                    Digite o CPF no formato XXX.XXX.XXX-XX
+                </ErrorSpan>
             </div>
         </div>
     );
@@ -94,6 +111,5 @@ const Input = styled.input`
 const ErrorSpan = styled.span`
     color: red;
     font-size: 17px;
-    display: ${ ({border}) => border === "red" ? "block" : "none" };
+    display: ${({ border }) => (border === "red" ? "block" : "none")};
 `;
-
