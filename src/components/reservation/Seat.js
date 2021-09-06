@@ -34,7 +34,7 @@ export default function Seat({
                 });
             } else {
                 const deleteSeat = window.confirm(
-                    "Você realmente quer desmarcar esse assento?"
+                    "Você realmente quer desmarcar esse assento? Os dados serão apagados"
                 );
                 if (deleteSeat) {
                     setSeatClass("seat available-color");
