@@ -18,7 +18,6 @@ export default function Reservation({ ticketOrder, setTicketOrder }) {
     const [buyerInfo, setBuyerInfo] = useState({ ids: [], compradores: [] });
 
     let invalidNames, invalidCpfs;
-    console.log(buyerInfo);
 
     useEffect(() => {
         axios
